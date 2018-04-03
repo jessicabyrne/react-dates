@@ -45,6 +45,7 @@ const propTypes = forbidExtraProps({
   renderDayContents: PropTypes.func,
   firstDayOfWeek: DayOfWeekShape,
   setMonthHeight: PropTypes.func,
+  verticalSpacing: nonNegativeInteger,
 
   focusedDate: momentPropTypes.momentObj, // indicates focusable day
   isFocused: PropTypes.bool, // indicates whether or not to move focus to focusable day
@@ -78,6 +79,7 @@ const defaultProps = {
   monthFormat: 'MMMM YYYY', // english locale
   phrases: CalendarDayPhrases,
   dayAriaLabelFormat: undefined,
+  verticalSpacing: undefined,
 };
 
 class CalendarMonth extends React.Component {

@@ -66,7 +66,7 @@ const propTypes = forbidExtraProps({
   verticalHeight: nonNegativeInteger,
   noBorder: PropTypes.bool,
   transitionDuration: nonNegativeInteger,
-  verticalSpacing: PropTypes.number,
+  verticalSpacing: nonNegativeInteger,
 
   // navigation props
   navPrev: PropTypes.node,

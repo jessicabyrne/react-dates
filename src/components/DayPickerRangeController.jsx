@@ -66,7 +66,7 @@ const propTypes = forbidExtraProps({
   hideKeyboardShortcutsPanel: PropTypes.bool,
   daySize: nonNegativeInteger,
   noBorder: PropTypes.bool,
-  verticalSpacing: PropTypes.number,
+  verticalSpacing: nonNegativeInteger,
 
   navPrev: PropTypes.node,
   navNext: PropTypes.node,

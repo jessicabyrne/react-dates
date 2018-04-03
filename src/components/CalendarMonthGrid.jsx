@@ -52,7 +52,7 @@ const propTypes = forbidExtraProps({
   setCalendarMonthHeights: PropTypes.func,
   isRTL: PropTypes.bool,
   transitionDuration: nonNegativeInteger,
-  verticalSpacing: PropTypes.number,
+  verticalSpacing: nonNegativeInteger,
 
   // i18n
   monthFormat: PropTypes.string,
