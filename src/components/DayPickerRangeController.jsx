@@ -66,6 +66,7 @@ const propTypes = forbidExtraProps({
   hideKeyboardShortcutsPanel: PropTypes.bool,
   daySize: nonNegativeInteger,
   noBorder: PropTypes.bool,
+  verticalSpacing: PropTypes.number,
 
   navPrev: PropTypes.node,
   navNext: PropTypes.node,
@@ -137,6 +138,7 @@ const defaultProps = {
   verticalHeight: null,
   noBorder: false,
   transitionDuration: undefined,
+  verticalSpacing: undefined,
 
   // accessibility
   onBlur() {},
@@ -989,6 +991,7 @@ export default class DayPickerRangeController extends React.Component {
       verticalHeight,
       noBorder,
       transitionDuration,
+      verticalSpacing,
     } = this.props;
 
     const { currentMonth, phrases, visibleDays } = this.state;
@@ -1030,6 +1033,7 @@ export default class DayPickerRangeController extends React.Component {
         weekDayFormat={weekDayFormat}
         dayAriaLabelFormat={dayAriaLabelFormat}
         verticalHeight={verticalHeight}
+        verticalSpacing={verticalSpacing}
         noBorder={noBorder}
         transitionDuration={transitionDuration}
       />
