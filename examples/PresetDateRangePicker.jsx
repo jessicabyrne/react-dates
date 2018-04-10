@@ -10,12 +10,7 @@ import DateRangePicker from '../src/components/DateRangePicker';
 
 import { DateRangePickerPhrases } from '../src/defaultPhrases';
 import DateRangePickerShape from '../src/shapes/DateRangePickerShape';
-import {
-  START_DATE,
-  END_DATE,
-  HORIZONTAL_ORIENTATION,
-  ANCHOR_LEFT
-} from '../src/constants';
+import { START_DATE, END_DATE, HORIZONTAL_ORIENTATION, ANCHOR_LEFT } from '../src/constants';
 import isSameDay from '../src/utils/isSameDay';
 
 const propTypes = {
@@ -26,21 +21,19 @@ const propTypes = {
   autoFocusEndDate: PropTypes.bool,
   initialStartDate: momentPropTypes.momentObj,
   initialEndDate: momentPropTypes.momentObj,
-  presets: PropTypes.arrayOf(
-    PropTypes.shape({
-      text: PropTypes.string,
-      start: momentPropTypes.momentObj,
-      end: momentPropTypes.momentObj
-    })
-  ),
+  presets: PropTypes.arrayOf(PropTypes.shape({
+    text: PropTypes.string,
+    start: momentPropTypes.momentObj,
+    end: momentPropTypes.momentObj,
+  })),
 
   ...omit(DateRangePickerShape, [
     'startDate',
     'endDate',
     'onDatesChange',
     'focusedInput',
-    'onFocusChange'
-  ])
+    'onFocusChange',
+  ]),
 };
 
 const defaultProps = {
@@ -96,7 +89,7 @@ const defaultProps = {
   // internationalization
   displayFormat: () => moment.localeData().longDateFormat('L'),
   monthFormat: 'MMMM YYYY',
-  phrases: DateRangePickerPhrases
+  phrases: DateRangePickerPhrases,
 };
 
 class DateRangePickerWrapper extends React.Component {
@@ -113,7 +106,7 @@ class DateRangePickerWrapper extends React.Component {
     this.state = {
       focusedInput,
       startDate: props.initialStartDate,
-      endDate: props.initialEndDate
+      endDate: props.initialEndDate,
     };
 
     this.onDatesChange = this.onDatesChange.bind(this);
@@ -136,19 +129,16 @@ class DateRangePickerWrapper extends React.Component {
     return (
       <div {...css(styles.PresetDateRangePicker_panel)}>
         {presets.map(({ text, start, end }) => {
-          const isSelected =
-            isSameDay(start, startDate) && isSameDay(end, endDate);
+          const isSelected = isSameDay(start, startDate) && isSameDay(end, endDate);
           return (
             <button
               key={text}
               {...css(
                 styles.PresetDateRangePicker_button,
-                isSelected && styles.PresetDateRangePicker_button__selected
+                isSelected && styles.PresetDateRangePicker_button__selected,
               )}
               type="button"
-              onClick={() =>
-                this.onDatesChange({ startDate: start, endDate: end })
-              }
+              onClick={() => this.onDatesChange({ startDate: start, endDate: end })}
             >
               {text}
             </button>
@@ -169,7 +159,7 @@ class DateRangePickerWrapper extends React.Component {
       'autoFocusEndDate',
       'initialStartDate',
       'initialEndDate',
-      'presets'
+      'presets',
     ]);
 
     return (
@@ -193,7 +183,7 @@ DateRangePickerWrapper.defaultProps = defaultProps;
 
 export default withStyles(({ reactDates: { color } }) => ({
   PresetDateRangePicker_panel: {
-    padding: '0 22px 11px 22px'
+    padding: '0 22px 11px 22px',
   },
 
   PresetDateRangePicker_button: {
@@ -201,8 +191,8 @@ export default withStyles(({ reactDates: { color } }) => ({
     height: '100%',
     textAlign: 'center',
     background: 'none',
-    border: `2px solid ${color.core.mdcThemePrimary}`,
-    color: color.core.mdcThemePrimary,
+    border: `2px solid ${color.core.primary}`,
+    color: color.core.primary,
     padding: '4px 12px',
     marginRight: 8,
     font: 'inherit',
@@ -213,12 +203,12 @@ export default withStyles(({ reactDates: { color } }) => ({
     cursor: 'pointer',
 
     ':active': {
-      outline: 0
-    }
+      outline: 0,
+    },
   },
 
   PresetDateRangePicker_button__selected: {
     color: color.core.white,
-    background: color.core.mdcThemePrimary
-  }
+    background: color.core.primary,
+  },
 }))(DateRangePickerWrapper);

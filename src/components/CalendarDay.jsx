@@ -27,7 +27,7 @@ const propTypes = forbidExtraProps({
   ariaLabelFormat: PropTypes.string,
 
   // internationalization
-  phrases: PropTypes.shape(getPhrasePropTypes(CalendarDayPhrases))
+  phrases: PropTypes.shape(getPhrasePropTypes(CalendarDayPhrases)),
 });
 
 const defaultProps = {
@@ -44,7 +44,7 @@ const defaultProps = {
   ariaLabelFormat: 'dddd, LL',
 
   // internationalization
-  phrases: CalendarDayPhrases
+  phrases: CalendarDayPhrases,
 };
 
 class CalendarDay extends React.Component {
@@ -83,7 +83,9 @@ class CalendarDay extends React.Component {
   }
 
   onKeyDown(day, e) {
-    const { onDayClick } = this.props;
+    const {
+      onDayClick,
+    } = this.props;
 
     const { key } = e;
     if (key === 'Enter' || key === ' ') {
@@ -105,7 +107,7 @@ class CalendarDay extends React.Component {
       renderDayContents,
       tabIndex,
       styles,
-      phrases
+      phrases,
     } = this.props;
 
     if (!day) return <td />;
@@ -116,14 +118,8 @@ class CalendarDay extends React.Component {
       selected,
       hoveredSpan,
       isOutsideRange,
-      ariaLabel
-    } = getCalendarDaySettings(
-      day,
-      ariaLabelFormat,
-      daySize,
-      modifiers,
-      phrases
-    );
+      ariaLabel,
+    } = getCalendarDaySettings(day, ariaLabelFormat, daySize, modifiers, phrases);
 
     return (
       <td
@@ -133,17 +129,12 @@ class CalendarDay extends React.Component {
           styles.CalendarDay__default,
           isOutsideDay && styles.CalendarDay__outside,
           modifiers.has('today') && styles.CalendarDay__today,
-          modifiers.has('first-day-of-week') &&
-            styles.CalendarDay__firstDayOfWeek,
-          modifiers.has('last-day-of-week') &&
-            styles.CalendarDay__lastDayOfWeek,
+          modifiers.has('first-day-of-week') && styles.CalendarDay__firstDayOfWeek,
+          modifiers.has('last-day-of-week') && styles.CalendarDay__lastDayOfWeek,
           modifiers.has('hovered-offset') && styles.CalendarDay__hovered_offset,
-          modifiers.has('highlighted-calendar') &&
-            styles.CalendarDay__highlighted_calendar,
-          modifiers.has('blocked-minimum-nights') &&
-            styles.CalendarDay__blocked_minimum_nights,
-          modifiers.has('blocked-calendar') &&
-            styles.CalendarDay__blocked_calendar,
+          modifiers.has('highlighted-calendar') && styles.CalendarDay__highlighted_calendar,
+          modifiers.has('blocked-minimum-nights') && styles.CalendarDay__blocked_minimum_nights,
+          modifiers.has('blocked-calendar') && styles.CalendarDay__blocked_calendar,
           hoveredSpan && styles.CalendarDay__hovered_span,
           modifiers.has('selected-span') && styles.CalendarDay__selected_span,
           modifiers.has('last-in-range') && styles.CalendarDay__last_in_range,
@@ -151,31 +142,19 @@ class CalendarDay extends React.Component {
           modifiers.has('selected-end') && styles.CalendarDay__selected_end,
           selected && styles.CalendarDay__selected,
           isOutsideRange && styles.CalendarDay__blocked_out_of_range,
-          daySizeStyles
+          daySizeStyles,
         )}
         role="button" // eslint-disable-line jsx-a11y/no-noninteractive-element-to-interactive-role
         ref={this.setButtonRef}
         aria-label={ariaLabel}
-        onMouseEnter={e => {
-          this.onDayMouseEnter(day, e);
-        }}
-        onMouseLeave={e => {
-          this.onDayMouseLeave(day, e);
-        }}
-        onMouseUp={e => {
-          e.currentTarget.blur();
-        }}
-        onClick={e => {
-          this.onDayClick(day, e);
-        }}
-        onKeyDown={e => {
-          this.onKeyDown(day, e);
-        }}
+        onMouseEnter={(e) => { this.onDayMouseEnter(day, e); }}
+        onMouseLeave={(e) => { this.onDayMouseLeave(day, e); }}
+        onMouseUp={(e) => { e.currentTarget.blur(); }}
+        onClick={(e) => { this.onDayClick(day, e); }}
+        onKeyDown={(e) => { this.onKeyDown(day, e); }}
         tabIndex={tabIndex}
       >
-        {renderDayContents
-          ? renderDayContents(day, modifiers)
-          : day.format('D')}
+        {renderDayContents ? renderDayContents(day, modifiers) : day.format('D')}
       </td>
     );
   }
@@ -193,12 +172,12 @@ export default withStyles(({ reactDates: { color, font } }) => ({
     textAlign: 'center',
 
     ':active': {
-      outline: 0
-    }
+      outline: 0,
+    },
   },
 
   CalendarDay__defaultCursor: {
-    cursor: 'default'
+    cursor: 'default',
   },
 
   CalendarDay__default: {
@@ -209,21 +188,21 @@ export default withStyles(({ reactDates: { color, font } }) => ({
     ':hover': {
       background: color.core.borderLight,
       border: `1px double ${color.core.borderLight}`,
-      color: 'inherit'
-    }
+      color: 'inherit',
+    },
   },
 
   CalendarDay__hovered_offset: {
     background: color.core.borderBright,
     border: `1px double ${color.core.borderLight}`,
-    color: 'inherit'
+    color: 'inherit',
   },
 
   CalendarDay__outside: {
     border: 0,
 
     background: color.outside.backgroundColor,
-    color: color.outside.color
+    color: color.outside.color,
   },
 
   CalendarDay__blocked_minimum_nights: {
@@ -233,13 +212,13 @@ export default withStyles(({ reactDates: { color, font } }) => ({
 
     ':hover': {
       background: color.minimumNights.backgroundColor_hover,
-      color: color.minimumNights.color_active
+      color: color.minimumNights.color_active,
     },
 
     ':active': {
       background: color.minimumNights.backgroundColor_active,
-      color: color.minimumNights.color_active
-    }
+      color: color.minimumNights.color_active,
+    },
   },
 
   CalendarDay__highlighted_calendar: {
@@ -248,13 +227,13 @@ export default withStyles(({ reactDates: { color, font } }) => ({
 
     ':hover': {
       background: color.highlighted.backgroundColor_hover,
-      color: color.highlighted.color_active
+      color: color.highlighted.color_active,
     },
 
     ':active': {
       background: color.highlighted.backgroundColor_active,
-      color: color.highlighted.color_active
-    }
+      color: color.highlighted.color_active,
+    },
   },
 
   CalendarDay__selected_span: {
@@ -265,18 +244,18 @@ export default withStyles(({ reactDates: { color, font } }) => ({
     ':hover': {
       background: color.selectedSpan.backgroundColor_hover,
       border: `1px solid ${color.selectedSpan.borderColor}`,
-      color: color.selectedSpan.color_active
+      color: color.selectedSpan.color_active,
     },
 
     ':active': {
       background: color.selectedSpan.backgroundColor_active,
       border: `1px solid ${color.selectedSpan.borderColor}`,
-      color: color.selectedSpan.color_active
-    }
+      color: color.selectedSpan.color_active,
+    },
   },
 
   CalendarDay__last_in_range: {
-    borderRight: color.core.mdcThemePrimary
+    borderRight: color.core.primary,
   },
 
   CalendarDay__selected: {
@@ -287,14 +266,14 @@ export default withStyles(({ reactDates: { color, font } }) => ({
     ':hover': {
       background: color.selected.backgroundColor_hover,
       border: `1px solid ${color.selected.borderColor}`,
-      color: color.selected.color_active
+      color: color.selected.color_active,
     },
 
     ':active': {
       background: color.selected.backgroundColor_active,
       border: `1px solid ${color.selected.borderColor}`,
-      color: color.selected.color_active
-    }
+      color: color.selected.color_active,
+    },
   },
 
   CalendarDay__hovered_span: {
@@ -305,14 +284,14 @@ export default withStyles(({ reactDates: { color, font } }) => ({
     ':hover': {
       background: color.hoveredSpan.backgroundColor_hover,
       border: `1px solid ${color.hoveredSpan.borderColor}`,
-      color: color.hoveredSpan.color_active
+      color: color.hoveredSpan.color_active,
     },
 
     ':active': {
       background: color.hoveredSpan.backgroundColor_active,
       border: `1px solid ${color.hoveredSpan.borderColor}`,
-      color: color.hoveredSpan.color_active
-    }
+      color: color.hoveredSpan.color_active,
+    },
   },
 
   CalendarDay__blocked_calendar: {
@@ -323,14 +302,14 @@ export default withStyles(({ reactDates: { color, font } }) => ({
     ':hover': {
       background: color.blocked_calendar.backgroundColor_hover,
       border: `1px solid ${color.blocked_calendar.borderColor}`,
-      color: color.blocked_calendar.color_active
+      color: color.blocked_calendar.color_active,
     },
 
     ':active': {
       background: color.blocked_calendar.backgroundColor_active,
       border: `1px solid ${color.blocked_calendar.borderColor}`,
-      color: color.blocked_calendar.color_active
-    }
+      color: color.blocked_calendar.color_active,
+    },
   },
 
   CalendarDay__blocked_out_of_range: {
@@ -341,19 +320,19 @@ export default withStyles(({ reactDates: { color, font } }) => ({
     ':hover': {
       background: color.blocked_out_of_range.backgroundColor_hover,
       border: `1px solid ${color.blocked_out_of_range.borderColor}`,
-      color: color.blocked_out_of_range.color_active
+      color: color.blocked_out_of_range.color_active,
     },
 
     ':active': {
       background: color.blocked_out_of_range.backgroundColor_active,
       border: `1px solid ${color.blocked_out_of_range.borderColor}`,
-      color: color.blocked_out_of_range.color_active
-    }
+      color: color.blocked_out_of_range.color_active,
+    },
   },
 
   CalendarDay__selected_start: {},
   CalendarDay__selected_end: {},
   CalendarDay__today: {},
   CalendarDay__firstDayOfWeek: {},
-  CalendarDay__lastDayOfWeek: {}
+  CalendarDay__lastDayOfWeek: {},
 }))(CalendarDay);
