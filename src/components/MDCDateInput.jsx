@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
-//import '@cdk-uip/react-text-field/dist/TextField.css';
+import '@cdk-uip/react-text-field/dist/TextField.css';
 
-export class DatePicker extends Component {
+export default class DatePicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
       focused: false,
       date: null
     };
-  }
-
-  handleClick() {
-    return alert('click!');
   }
 
   handleFocus() {
@@ -38,12 +34,11 @@ export class DatePicker extends Component {
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'right 4px bottom 16px'
         }}
-        onClick={this.handleClick}
       >
         <input
           type="text"
           className="mdc-text-field__input"
-          onFocus={this.handleFocus.bind(this)}
+          onFocus={this.props.onFocus}
           onBlur={this.handleBlur.bind(this)}
           value={value}
           readOnly

@@ -522,7 +522,11 @@ class SingleDatePicker extends React.Component {
         )}
       >
         <OutsideClickHandler onOutsideClick={onOutsideClick}>
-          <MDCDateInput label="Select a date" value="2018-03-18" />
+          <MDCDateInput
+            label="Select a date"
+            value={this.props.date}
+            onFocus={this.onFocus}
+          />
           {this.maybeRenderDayPickerWithPortal()}
         </OutsideClickHandler>
       </div>

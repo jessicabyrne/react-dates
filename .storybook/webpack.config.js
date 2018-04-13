@@ -5,10 +5,8 @@ module.exports = {
     rules: [
       {
         test: /\.s?css$/,
-        use: ['style-loader', 'raw-loader', 'sass-loader'],
-        include: [
-          path.resolve(__dirname, '../css/'),
-        ],
+        use: ['style-loader', 'raw-loader', 'sass-loader']
+        //  include: [path.resolve(__dirname, '../css/')]
       },
       {
         test: /\.svg$/,
@@ -16,10 +14,10 @@ module.exports = {
           {
             loader: 'babel-loader',
             query: {
-              presets: ['airbnb'],
-            },
-          },
-        ],
+              presets: ['airbnb']
+            }
+          }
+        ]
       },
       {
         test: /\.jsx$/,
@@ -27,14 +25,14 @@ module.exports = {
           {
             loader: 'babel-loader',
             query: {
-              presets: ['airbnb'],
-            },
-          },
-        ],
-      },
-    ],
+              presets: ['airbnb']
+            }
+          }
+        ]
+      }
+    ]
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
-  },
+    extensions: ['.js', '.jsx']
+  }
 };
