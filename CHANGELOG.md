@@ -1,5 +1,20 @@
 # Change Log
 
+## 16.6.1
+- [fix] Fix selective disabling of the `DateRangePicker` ([#1116](https://github.com/airbnb/react-dates/pull/1116))
+- [fix] Fix `onOutsideClick` refactor ([#1115](https://github.com/airbnb/react-dates/pull/1115))
+
+## 16.6.0
+- [new] Add `appendToBody`/`disableScroll` props ([#1069](https://github.com/airbnb/react-dates/pull/1069))
+- [fix] Address unexpected blur call ([#1107](https://github.com/airbnb/react-dates/pull/1107))
+- [new] Add `verticalBorderSpacing` prop to `DayPickerSingleDateController`/`DayPickerRangeController` ([#1096](https://github.com/airbnb/react-dates/pull/1096))
+- [fix] Move focus to `DayPicker` when readOnly is true ([#961](https://github.com/airbnb/react-dates/pull/961))
+
+## 16.5.0
+- [new] Export `CustomizeableCalendarDay` default styles ([#1095](https://github.com/airbnb/react-dates/pull/1095))
+- [new] Allow selectively disabling either input in the DRP ([#](https://github.com/airbnb/react-dates/pull/606))
+- [new] Add `dayAriaLabelFormat` prop to the SDP/DRP ([#](https://github.com/airbnb/react-dates/pull/984))
+
 ## 16.4.0
 - [new] Export `OutsideClickHandler` in index.js ([#1089](https://github.com/airbnb/react-dates/pull/1089))
 - [fix] Do not apply `verticalSpacing` when `withPortal` or `withFullScreenPortal` is true ([#980](https://github.com/airbnb/react-dates/pull/980))
