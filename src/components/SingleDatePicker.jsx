@@ -19,12 +19,9 @@ import disableScroll from '../utils/disableScroll';
 
 import SingleDatePickerInput from './SingleDatePickerInput';
 import DayPickerSingleDateController from './DayPickerSingleDateController';
-<<<<<<< HEAD
 import MDCDateInput from './MDCDateInput';
 
-=======
 import OutsideClickHandler from './OutsideClickHandler';
->>>>>>> master
 import CloseButton from './CloseButton';
 
 import {
@@ -115,12 +112,8 @@ const defaultProps = {
   displayFormat: () => moment.localeData().longDateFormat('L'),
   monthFormat: 'MMMM YYYY',
   weekDayFormat: 'dd',
-<<<<<<< HEAD
-  phrases: SingleDatePickerPhrases
-=======
   phrases: SingleDatePickerPhrases,
-  dayAriaLabelFormat: undefined,
->>>>>>> master
+  dayAriaLabelFormat: undefined
 };
 
 class SingleDatePicker extends React.Component {
@@ -147,14 +140,10 @@ class SingleDatePicker extends React.Component {
     this.onClearFocus = this.onClearFocus.bind(this);
     this.clearDate = this.clearDate.bind(this);
 
-<<<<<<< HEAD
     this.responsivizePickerPosition = this.responsivizePickerPosition.bind(
       this
     );
-=======
-    this.responsivizePickerPosition = this.responsivizePickerPosition.bind(this);
     this.disableScroll = this.disableScroll.bind(this);
->>>>>>> master
 
     this.setDayPickerContainerRef = this.setDayPickerContainerRef.bind(this);
     this.setContainerRef = this.setContainerRef.bind(this);
@@ -229,13 +218,9 @@ class SingleDatePicker extends React.Component {
 
     const withAnyPortal = withPortal || withFullScreenPortal;
     const moveFocusToDayPicker =
-<<<<<<< HEAD
-      withAnyPortal || (this.isTouchDevice && !keepFocusOnInput);
-=======
       withAnyPortal ||
       (readOnly && !keepFocusOnInput) ||
       (this.isTouchDevice && !keepFocusOnInput);
->>>>>>> master
 
     if (moveFocusToDayPicker) {
       this.onDayPickerFocus();
@@ -248,20 +233,14 @@ class SingleDatePicker extends React.Component {
     }
   }
 
-<<<<<<< HEAD
-  onClearFocus() {
-    const { date, focused, onFocusChange, onClose } = this.props;
-=======
   onClearFocus(event) {
-    const {
-      date,
-      focused,
-      onFocusChange,
-      onClose,
-    } = this.props;
->>>>>>> master
+    const { date, focused, onFocusChange, onClose } = this.props;
     if (!focused) return;
-    if (this.props.appendToBody && this.dayPickerContainer.contains(event.target)) return;
+    if (
+      this.props.appendToBody &&
+      this.dayPickerContainer.contains(event.target)
+    )
+      return;
 
     this.setState({
       isInputFocused: false,
@@ -339,12 +318,8 @@ class SingleDatePicker extends React.Component {
       horizontalMargin,
       withPortal,
       withFullScreenPortal,
-<<<<<<< HEAD
-      focused
-=======
       appendToBody,
-      focused,
->>>>>>> master
+      focused
     } = this.props;
     const { dayPickerContainerStyles } = this.state;
 
@@ -362,28 +337,20 @@ class SingleDatePicker extends React.Component {
         : containerRect[ANCHOR_LEFT];
 
       this.setState({
-<<<<<<< HEAD
-        dayPickerContainerStyles: getResponsiveContainerStyles(
-          anchorDirection,
-          currentOffset,
-          containerEdge,
-          horizontalMargin
-        )
-=======
         dayPickerContainerStyles: {
           ...getResponsiveContainerStyles(
             anchorDirection,
             currentOffset,
             containerEdge,
-            horizontalMargin,
+            horizontalMargin
           ),
-          ...(appendToBody && getDetachedContainerStyles(
-            openDirection,
-            anchorDirection,
-            this.container,
-          )),
-        },
->>>>>>> master
+          ...(appendToBody &&
+            getDetachedContainerStyles(
+              openDirection,
+              anchorDirection,
+              this.container
+            ))
+        }
       });
     }
   }
@@ -401,24 +368,15 @@ class SingleDatePicker extends React.Component {
       focused,
       withPortal,
       withFullScreenPortal,
-      appendToBody,
+      appendToBody
     } = this.props;
 
     if (!focused) {
       return null;
     }
 
-<<<<<<< HEAD
-    if (withPortal || withFullScreenPortal) {
-      return <Portal>{this.renderDayPicker()}</Portal>;
-=======
     if (withPortal || withFullScreenPortal || appendToBody) {
-      return (
-        <Portal>
-          {this.renderDayPicker()}
-        </Portal>
-      );
->>>>>>> master
+      return <Portal>{this.renderDayPicker()}</Portal>;
     }
 
     return this.renderDayPicker();
