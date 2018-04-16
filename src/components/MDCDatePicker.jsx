@@ -16,8 +16,8 @@ import getResponsiveContainerStyles from '../utils/getResponsiveContainerStyles'
 import getInputHeight from '../utils/getInputHeight';
 
 import SingleDatePickerInput from './SingleDatePickerInput';
-import MDCDateInput from './MDCDateInput';
 import DayPickerSingleDateController from './DayPickerSingleDateController';
+import MDCDateInput from './MDCDateInput';
 
 import CloseButton from './CloseButton';
 
@@ -522,8 +522,11 @@ class SingleDatePicker extends React.Component {
         )}
       >
         <OutsideClickHandler onOutsideClick={onOutsideClick}>
-          <DatePicker label="Select a date" value="2018-03-18" />
-
+          <MDCDateInput
+            label="Select a date"
+            value={this.getDateString(date)}
+            onFocus={this.onFocus}
+          />
           {this.maybeRenderDayPickerWithPortal()}
         </OutsideClickHandler>
       </div>
